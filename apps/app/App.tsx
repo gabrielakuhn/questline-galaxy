@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button";
+import { Menu } from "@/components/Menu/Menu";
 import { StatusBar } from "expo-status-bar";
 import { Text, View, Alert } from "react-native";
 
@@ -30,6 +31,7 @@ export default function App() {
         <Button title="Press me" onPress={() => Alert.alert("Ik ben een Alert!")}/>
       </View>
       <StatusBar style="auto" />
+      <Menu/>
     </View>
   );
 }
