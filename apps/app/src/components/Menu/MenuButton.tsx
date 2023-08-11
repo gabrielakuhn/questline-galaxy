@@ -9,7 +9,7 @@ interface MenuButtonProps {
 
 export const MenuButton = ({ icon, iconType, onPress }: MenuButtonProps) => {
   return (
-    <TouchableOpacity onPress={onPress} className="p-8 pt-5">
+    <TouchableOpacity onPress={onPress} className="p-12 pt-6 basis-1/3 w-full">
       <Icon name={icon} type={iconType} />
     </TouchableOpacity>
   )
