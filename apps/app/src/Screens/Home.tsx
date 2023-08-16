@@ -1,7 +1,11 @@
 import { Text, View } from "react-native"
 import { Menu } from "../components/Menu/Menu"
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from "./Types/Stack";
 
-export const Home = ({ navigation }: any) => {
+type HomeProps = NativeStackScreenProps<RootStackParamList>
+
+export const Home = ({ navigation, route }: HomeProps) => {
   return (
     <View className="flex-1 items-center justify-center bg-white space-y-10">
       <Text className="text-lg p-3">Hi!</Text>
@@ -25,7 +29,7 @@ export const Home = ({ navigation }: any) => {
           <View className="basis-1/12 h-20 bg-galaxy-rose" />
         </View>
       </View>
-      <Menu navigation={navigation} />
+      <Menu navigation={navigation} route={route} />
     </View>
   )
 }

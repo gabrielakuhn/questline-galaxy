@@ -1,7 +1,12 @@
 import { View } from "react-native";
 import { MenuButton } from "./MenuButton";
 
-export const Menu = ({ navigation }: any) => {
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from "@/Screens/Types/Stack";
+
+type MenuProps = NativeStackScreenProps<RootStackParamList> 
+
+export const Menu = ({ navigation }: MenuProps) => {
   return (
     <View className="absolute bottom-0 bg-slate-100 border-t border-slate-200 flex flex-row justify-center">
       <MenuButton
