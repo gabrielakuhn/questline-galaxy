@@ -2,8 +2,6 @@ import { View } from "react-native";
 import { MenuButton } from "./MenuButton";
 
 export const Menu = ({ navigation }: any) => {
-  console.log("navigation menus", navigation);
-
   return (
     <View className="absolute bottom-0 bg-slate-100 border-t border-slate-200 flex flex-row justify-center">
       <MenuButton
