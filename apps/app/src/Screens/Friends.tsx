@@ -2,9 +2,9 @@ import { Menu } from "@/components/Menu/Menu"
 import { View, Text } from "react-native"
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from "./Types/Stack";
+import { RootScreensParamList } from "./Types/Screens";
 
-type FriendsProps = NativeStackScreenProps<RootStackParamList, "Friends">
+type FriendsProps = NativeStackScreenProps<RootScreensParamList, "Friends">
 
 export const Friends = ({navigation, route}: FriendsProps) => {
   return (

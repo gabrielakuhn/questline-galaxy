@@ -2,9 +2,9 @@ import { View } from "react-native";
 import { MenuButton } from "./MenuButton";
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from "@/Screens/Types/Stack";
+import { RootScreensParamList } from "@/Screens/Types/Screens";
 
-type MenuProps = NativeStackScreenProps<RootStackParamList> 
+type MenuProps = NativeStackScreenProps<RootScreensParamList> 
 
 export const Menu = ({ navigation }: MenuProps) => {
   return (
