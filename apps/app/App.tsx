@@ -4,9 +4,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "@/Screens/Home";
 import { Friends } from "@/Screens/Friends"
 import { Quests } from "@/Screens/Quests"
-import { RootStackParamList } from "@/Screens/Types/Stack";
+import { RootScreensParamList } from "@/Screens/Types/Screens";
 
-const Stack = createNativeStackNavigator<RootStackParamList>()
+const Stack = createNativeStackNavigator<RootScreensParamList>()
 
 export default function App() {
   return (

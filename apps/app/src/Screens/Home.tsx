@@ -1,9 +1,9 @@
 import { Text, View } from "react-native"
 import { Menu } from "../components/Menu/Menu"
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from "./Types/Stack";
+import { RootScreensParamList } from "./Types/Screens";
 
-type HomeProps = NativeStackScreenProps<RootStackParamList>
+type HomeProps = NativeStackScreenProps<RootScreensParamList>
 
 export const Home = ({ navigation, route }: HomeProps) => {
   return (
