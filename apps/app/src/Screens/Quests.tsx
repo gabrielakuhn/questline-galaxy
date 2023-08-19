@@ -2,9 +2,9 @@ import { Button } from "@/components/Button"
 import { Menu } from "@/components/Menu/Menu"
 import { View, Text, Alert } from "react-native"
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootScreensParamList } from "./Types/Screens";
+import { RootScreensParamList, Screen } from "./Types/Screens";
 
-type QuestsProps = NativeStackScreenProps<RootScreensParamList, "Quests">
+type QuestsProps = NativeStackScreenProps<RootScreensParamList, Screen.QUESTS>
 
 export const Quests = ({navigation, route}: QuestsProps) => {
   return (
