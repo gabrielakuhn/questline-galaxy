@@ -4,7 +4,7 @@ import { View, Text, Alert } from "react-native"
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootScreensParamList, Screen } from "./Types/Screens";
 
-type Props = NativeStackScreenProps<RootScreensParamList, Screen.QUESTS>
+type Props = NativeStackScreenProps<RootScreensParamList, Screen.Quests>
 
 export const Quests = ({navigation, route}: Props) => {
   return (
