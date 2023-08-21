@@ -4,9 +4,9 @@ import { View, Text, Alert } from "react-native"
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootScreensParamList, Screen } from "./Types/Screens";
 
-type QuestsProps = NativeStackScreenProps<RootScreensParamList, Screen.QUESTS>
+type Props = NativeStackScreenProps<RootScreensParamList, Screen.QUESTS>
 
-export const Quests = ({navigation, route}: QuestsProps) => {
+export const Quests = ({navigation, route}: Props) => {
   return (
     <View className="flex-1 items-center justify-center bg-lime-200 space-y-10">
       <Text>This is {route.params.name}'s Quets</Text>
