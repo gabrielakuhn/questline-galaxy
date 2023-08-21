@@ -16,9 +16,9 @@ export default function App() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name={Screen.HOME} component={Home} />
+        <Stack.Screen name={Screen.Home} component={Home} />
         <Stack.Screen name={Screen.Friends} component={Friends} />
-        <Stack.Screen name={Screen.QUESTS} component={Quests} />
+        <Stack.Screen name={Screen.Quests} component={Quests} />
       </Stack.Navigator>
     </NavigationContainer>
   )
