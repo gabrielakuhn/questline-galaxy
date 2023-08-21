@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Home } from "@/Screens/Home";
-import { Friends } from "@/Screens/Friends"
+import { Crew } from "@/Screens/Crew"
 import { Quests } from "@/Screens/Quests"
 import { RootScreensParamList, Screen } from "@/Screens/Types/Screens";
 
@@ -17,7 +17,7 @@ export default function App() {
         }}
       >
         <Stack.Screen name={Screen.Home} component={Home} />
-        <Stack.Screen name={Screen.Friends} component={Friends} />
+        <Stack.Screen name={Screen.Crew} component={Crew} />
         <Stack.Screen name={Screen.Quests} component={Quests} />
       </Stack.Navigator>
     </NavigationContainer>

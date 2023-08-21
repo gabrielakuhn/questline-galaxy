@@ -1,12 +1,12 @@
 export enum Screen {
     Home = "Home",
-    Friends = "Friends",
+    Crew = "Crew",
     Quests = "Quests"
 } 
 
 export type RootScreensParamList = {
     [Screen.Home]: undefined;
-    [Screen.Friends]: { name: string };
+    [Screen.Crew]: { name: string };
     [Screen.Quests]: { name: string };
 }
 

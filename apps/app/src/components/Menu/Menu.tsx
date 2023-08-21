@@ -17,7 +17,7 @@ export const Menu = ({ navigation }: MenuProps) => {
       <MenuButton
         icon="user-friends"
         iconType="font-awesome-5"
-        onPress={() => navigation.navigate(Screen.Friends, { name: "Goldy" })}
+        onPress={() => navigation.navigate(Screen.Crew, { name: "Goldy" })}
       />
       <MenuButton
         icon="rocket-sharp"
