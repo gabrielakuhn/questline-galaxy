@@ -3,9 +3,9 @@ import { Menu } from "../components/Menu/Menu"
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootScreensParamList } from "./Types/Screens";
 
-type HomeProps = NativeStackScreenProps<RootScreensParamList>
+type Props = NativeStackScreenProps<RootScreensParamList>
 
-export const Home = ({ navigation, route }: HomeProps) => {
+export const Home = ({ navigation, route }: Props) => {
   return (
     <View className="flex-1 items-center justify-center bg-white space-y-10">
       <Text className="text-lg p-3">Hi!</Text>
