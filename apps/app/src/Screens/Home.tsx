@@ -4,15 +4,13 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootScreensParamList } from "./Types/Screens";
 import { TimerView } from "@/components/Timer";
 import { Button } from "@/components/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Trip } from "@/types/Trip";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
 export const Home = ({ navigation, route }: Props) => {
   const [trips, setTrips] = useState<Trip[]>([]);
-
-  const startTime = new Date("2023-09-05T12:46:55.815Z");
 
   const createTrip = (name: string) => {
     const newTrip = {
@@ -24,10 +22,6 @@ export const Home = ({ navigation, route }: Props) => {
     setTrips((prevState) => [...prevState, newTrip]);
   };
 
-  useEffect(() => {
-    console.log("trips", trips);
-  }, [trips]);
-
   return (
     <View className="flex-1 items-center justify-center bg-white space-y-10">
       <Text className="text-lg p-3">Hi!</Text>
@@ -38,7 +32,6 @@ export const Home = ({ navigation, route }: Props) => {
             {trip.name}
           </TimerView>
         ))}
-        <TimerView start={startTime}>NAME</TimerView>
       </View>
       <View>
         <Button onPress={() => createTrip("Trip Name")} title="Add Trip" />

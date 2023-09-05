@@ -8,6 +8,12 @@ interface Props {
   children: string;
 }
 
+const initialTimer: Timer = {
+  hours: "00",
+  minutes: "00",
+  seconds: "00",
+};
+
 const countUp = (start: Date): Timer => {
   const now = new Date();
   const distance = now.getTime() - start.getTime();
@@ -19,12 +25,6 @@ const countUp = (start: Date): Timer => {
   };
 
   return time;
-};
-
-const initialTimer: Timer = {
-  hours: "00",
-  minutes: "00",
-  seconds: "00",
 };
 
 export const TimerView = ({ start, children }: Props) => {
