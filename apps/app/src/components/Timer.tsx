@@ -6,7 +6,6 @@ import { Button, Text, View } from "react-native";
 
 interface Props {
   trip: Trip;
-  children: string;
   remove: (id: string) => void;
 }
 
@@ -29,7 +28,7 @@ const countUp = (start: Date): Timer => {
   return time;
 };
 
-export const TimerView = ({ trip, children, remove }: Props) => {
+export const TimerView = ({ trip, remove }: Props) => {
   const [timer, setTimer] = useState<Timer>(initialTimer);
 
   const countTimeUp = (start: Date) => {
@@ -45,7 +44,7 @@ export const TimerView = ({ trip, children, remove }: Props) => {
 
   return (
     <View className="flex flex-row p-6 items-center">
-      <Text className="font-bold pr-3">{children}</Text>
+      <Text className="font-bold pr-3">{trip.name}</Text>
       <Text className="font-bold">{timer.hours}:</Text>
       <Text className="font-bold">{timer.minutes}:</Text>
       <Text className="font-bold">{timer.seconds}</Text>
