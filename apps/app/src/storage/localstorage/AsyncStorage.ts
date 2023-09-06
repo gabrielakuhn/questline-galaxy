@@ -1,9 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export enum StorageKey {
-  Trips = "trips",
-}
-
 export const storeData = async <T>(value: T, key: string): Promise<boolean> => {
   try {
     const jsonValue = JSON.stringify(value);

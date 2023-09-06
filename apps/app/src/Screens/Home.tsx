@@ -6,8 +6,9 @@ import { TimerView } from "@/components/Timer";
 import { Button } from "@/components/Button";
 import { useEffect, useState } from "react";
 import { Trip } from "@/types/Trip";
-import { StorageKey, getData, storeData } from "@/utilities/localstorage";
-import { error } from "@/utilities/messages/errors";
+import { error } from "@/errors/messages";
+import { StorageKey } from "@/storage/localstorage/Keys";
+import { getData, storeData } from "@/storage/localstorage/AsyncStorage";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
