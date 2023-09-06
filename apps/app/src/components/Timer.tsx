@@ -1,6 +1,6 @@
 import { Timer } from "@/types/Timer";
 import { Trip } from "@/types/Trip";
-import { leftPad } from "@/utilities/global";
+import { leftPad } from "@/utilities";
 import { useEffect, useState } from "react";
 import { Button, Text, View } from "react-native";
 
