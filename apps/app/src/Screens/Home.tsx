@@ -1,22 +1,25 @@
 import { Alert, Text, View } from "react-native";
-import { Menu } from "../components/Menu/Menu";
+import { Menu } from "../domain/Menu/Menu";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList } from "./Types/Screens";
-import { TimerView } from "@/components/Timer";
+import { RootScreensParamList } from "./Models/Screens";
 import { Button } from "@/components/Button";
 import { useEffect, useState } from "react";
-import { Trip } from "@/types/Trip";
-import { error } from "@/errors/messages";
-import { StorageKey } from "@/storage/localstorage/Keys";
-import { getData, storeData } from "@/storage/localstorage/AsyncStorage";
+import { error } from "@/infrastructure/errors/messages";
+import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
+import {
+  getData,
+  storeData,
+} from "@/infrastructure/storage/localstorage/AsyncStorage";
+import { Trip } from "@/domain/Trip/Trip";
+import { Trip as TripModel } from "@/domain/Trip/Models/Trip";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
 export const Home = ({ navigation, route }: Props) => {
-  const [trips, setTrips] = useState<Trip[]>([]);
+  const [trips, setTrips] = useState<TripModel[]>([]);
 
-  const setTripsState = (trips: Trip[]) => {
-    storeData<Trip[]>(trips, StorageKey.Trips).then((succes) => {
+  const setTripsState = (trips: TripModel[]) => {
+    storeData<TripModel[]>(trips, StorageKey.Trips).then((succes) => {
       if (succes) {
         setTrips(trips);
       } else {
@@ -42,9 +45,9 @@ export const Home = ({ navigation, route }: Props) => {
   };
 
   const getTrips = async () => {
-    let storedTrips: Trip[] = [];
+    let storedTrips: TripModel[] = [];
 
-    await getData<Trip[]>(StorageKey.Trips).then((value) => {
+    await getData<TripModel[]>(StorageKey.Trips).then((value) => {
       storedTrips = value;
     });
 
@@ -63,8 +66,11 @@ export const Home = ({ navigation, route }: Props) => {
       <Text>Questline app met Typescript en Nativewind!</Text>
       <View className="space-y-6">
         {trips.map((trip) => (
-          <View className="border border-slate-400 border-dashed rounded-2xl">
-            <TimerView key={trip.id} trip={trip} remove={removeTrip} />
+          <View
+            key={trip.id}
+            className="border border-slate-400 border-dashed rounded-2xl"
+          >
+            <Trip trip={trip} remove={removeTrip} />
           </View>
         ))}
       </View>
