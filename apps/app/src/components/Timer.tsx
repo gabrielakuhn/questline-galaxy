@@ -1,11 +1,13 @@
 import { Timer } from "@/types/Timer";
+import { Trip } from "@/types/Trip";
 import { leftPad } from "@/utilities/global";
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 
 interface Props {
-  start: Date;
+  trip: Trip;
   children: string;
+  remove: (id: string) => void;
 }
 
 const initialTimer: Timer = {
@@ -27,7 +29,7 @@ const countUp = (start: Date): Timer => {
   return time;
 };
 
-export const TimerView = ({ start, children }: Props) => {
+export const TimerView = ({ trip, children, remove }: Props) => {
   const [timer, setTimer] = useState<Timer>(initialTimer);
 
   const countTimeUp = (start: Date) => {
@@ -38,15 +40,18 @@ export const TimerView = ({ start, children }: Props) => {
   };
 
   useEffect(() => {
-    countTimeUp(start);
+    countTimeUp(new Date(trip.start));
   }, []);
 
   return (
-    <View className="galaxy-violet p-6 flex flex-row ">
+    <View className="flex flex-row p-6 items-center">
       <Text className="font-bold pr-3">{children}</Text>
       <Text className="font-bold">{timer.hours}:</Text>
       <Text className="font-bold">{timer.minutes}:</Text>
       <Text className="font-bold">{timer.seconds}</Text>
+      <View className="mb-1">
+        <Button onPress={() => remove(trip.id)} title="x"></Button>
+      </View>
     </View>
   );
 };
