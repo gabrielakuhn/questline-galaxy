@@ -1,25 +1,23 @@
-import { Timer } from "@/types/Timer";
-import { Trip } from "@/types/Trip";
-import { leftPad } from "@/utilities";
+import { Timer as TimerModel } from "@/components/Models/Timer";
+import { leftPad } from "@/infrastructure/utilities";
 import { useEffect, useState } from "react";
-import { Button, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 interface Props {
-  trip: Trip;
-  remove: (id: string) => void;
+  start: Date;
 }
 
-const initialTimer: Timer = {
+const initialTimer: TimerModel = {
   hours: "00",
   minutes: "00",
   seconds: "00",
 };
 
-const countUp = (start: Date): Timer => {
+const countUp = (start: Date): TimerModel => {
   const now = new Date();
   const distance = now.getTime() - start.getTime();
 
-  const time: Timer = {
+  const time: TimerModel = {
     hours: leftPad(Math.floor(distance / (1000 * 60 * 60))),
     minutes: leftPad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))),
     seconds: leftPad(Math.floor((distance % (1000 * 60)) / 1000)),
@@ -28,8 +26,8 @@ const countUp = (start: Date): Timer => {
   return time;
 };
 
-export const TimerView = ({ trip, remove }: Props) => {
-  const [timer, setTimer] = useState<Timer>(initialTimer);
+export const Timer = ({ start }: Props) => {
+  const [timer, setTimer] = useState<TimerModel>(initialTimer);
 
   const countTimeUp = (start: Date) => {
     setInterval(function () {
@@ -39,18 +37,14 @@ export const TimerView = ({ trip, remove }: Props) => {
   };
 
   useEffect(() => {
-    countTimeUp(new Date(trip.start));
+    countTimeUp(new Date(start));
   }, []);
 
   return (
-    <View className="flex flex-row p-6 items-center">
-      <Text className="font-bold pr-3">{trip.name}</Text>
+    <View className="flex flex-row">
       <Text className="font-bold">{timer.hours}:</Text>
       <Text className="font-bold">{timer.minutes}:</Text>
       <Text className="font-bold">{timer.seconds}</Text>
-      <View className="mb-1">
-        <Button onPress={() => remove(trip.id)} title="x"></Button>
-      </View>
     </View>
   );
 };

@@ -1,12 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Home } from "@/Screens/Home";
-import { Crew } from "@/Screens/Crew"
-import { Quests } from "@/Screens/Quests"
-import { RootScreensParamList, Screen } from "@/Screens/Types/Screens";
+import { Home } from "@/screens/Home";
+import { Crew } from "@/screens/Crew";
+import { Quests } from "@/screens/Quests";
+import { RootScreensParamList, Screen } from "@/screens/Models/Screens";
 
-const Stack = createNativeStackNavigator<RootScreensParamList>()
+const Stack = createNativeStackNavigator<RootScreensParamList>();
 
 export default function App() {
   return (
@@ -21,5 +21,5 @@ export default function App() {
         <Stack.Screen name={Screen.Quests} component={Quests} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
