@@ -1,4 +1,18 @@
+import { error } from "@/infrastructure/errors/messages";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert } from "react-native";
+
+export const setStorage = async <T>(
+  value: T,
+  key: string
+): Promise<boolean> => {
+  let response: boolean = false;
+  await storeData<T>(value, key).then((succes) => {
+    !succes ?? Alert.alert(error.Something_Wrong);
+    response = succes;
+  });
+  return response;
+};
 
 export const storeData = async <T>(value: T, key: string): Promise<boolean> => {
   try {
