@@ -13,7 +13,7 @@ const initialTimer: TimerModel = {
   seconds: "00",
 };
 
-const countUp = (start: Date): TimerModel => {
+const countUp = (start: Props["start"]): TimerModel => {
   const now = new Date();
   const startTime = new Date(start);
   const distance = now.getTime() - startTime.getTime();
@@ -30,7 +30,7 @@ const countUp = (start: Date): TimerModel => {
 export const Timer = ({ start }: Props) => {
   const [timer, setTimer] = useState<TimerModel>(initialTimer);
 
-  const countTimeUp = (start: Date) => {
+  const countTimeUp = (start: Props["start"]) => {
     setInterval(function () {
       const time = countUp(start);
       setTimer(time);
@@ -38,7 +38,7 @@ export const Timer = ({ start }: Props) => {
   };
 
   useEffect(() => {
-    countTimeUp(new Date(start));
+    countTimeUp(start);
   }, []);
 
   return (
