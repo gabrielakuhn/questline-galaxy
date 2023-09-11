@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 interface Props {
-  start: Date;
+  start: string | number;
 }
 
 const initialTimer: TimerModel = {
@@ -15,7 +15,8 @@ const initialTimer: TimerModel = {
 
 const countUp = (start: Date): TimerModel => {
   const now = new Date();
-  const distance = now.getTime() - start.getTime();
+  const startTime = new Date(start);
+  const distance = now.getTime() - startTime.getTime();
 
   const time: TimerModel = {
     hours: leftPad(Math.floor(distance / (1000 * 60 * 60))),
