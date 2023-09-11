@@ -7,9 +7,9 @@ export const setStorage = async <T>(
   key: string
 ): Promise<boolean> => {
   let response: boolean = false;
-  await storeData<T>(value, key).then((succes) => {
-    !succes ?? Alert.alert(error.Something_Wrong);
-    response = succes;
+  await storeData<T>(value, key).then((success) => {
+    !success ?? Alert.alert(error.Something_Wrong);
+    response = success;
   });
   return response;
 };

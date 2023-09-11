@@ -57,9 +57,6 @@ export const Home = ({ navigation, route }: Props) => {
     <View className="flex-1 items-center justify-center bg-white space-y-10">
       <Text className="text-lg p-3">Hi!</Text>
       <Text>Questline app met Typescript en Nativewind!</Text>
-      <View>
-        <Button onPress={() => createTrip("Trip Name")} title="Add Trip" />
-      </View>
       <View className="space-y-6">
         {trips.map((trip) => (
           <View
@@ -69,6 +66,9 @@ export const Home = ({ navigation, route }: Props) => {
             <Trip trip={trip} remove={removeTrip} />
           </View>
         ))}
+      </View>
+      <View>
+        <Button onPress={() => createTrip("Trip Name")} title="Add Trip" />
       </View>
       <Menu navigation={navigation} route={route} />
     </View>
