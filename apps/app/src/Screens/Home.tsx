@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { Menu } from "../domain/Menu/Menu";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList } from "./Models/Screens";
+import { RootScreensParamList, Screen } from "./Models/Screens";
 import { Button } from "@/components/Button";
 import { useEffect } from "react";
 import { Trip } from "@/domain/Trip/Trip";
@@ -67,7 +67,10 @@ export const Home = ({ navigation, route }: Props) => {
         ))}
       </View>
       <View>
-        <Button onPress={() => createTrip("Trip Name")} title="Add Trip" />
+        <Button
+          onPress={() => navigation.navigate(Screen.CreateTrip)}
+          title="Add Trip"
+        />
       </View>
       <Menu navigation={navigation} route={route} />
     </View>
