@@ -26,7 +26,7 @@ export const Home = ({ navigation, route }: Props) => {
     (state: RootState) => state.tripsStore
   );
 
-  const createTrip = async (name: string) => {
+  const createTrip = async (name: string): Promise<void> => {
     const newTrip = {
       id: new Date().getTime().toString(),
       name,
@@ -34,13 +34,12 @@ export const Home = ({ navigation, route }: Props) => {
     };
 
     const isStored = await storeTripIntoLocalStorage(trips, newTrip);
-
     if (isStored) {
       dispatch(addTripToState(newTrip));
     }
   };
 
-  const removeTrip = async (id: string) => {
+  const removeTrip = async (id: string): Promise<void> => {
     const isRemoved = await removeTripFromLocalStorage(trips, id);
     if (isRemoved) {
       dispatch(removeTripFromState(id));
@@ -51,7 +50,7 @@ export const Home = ({ navigation, route }: Props) => {
     if (tripsStatus === StoreStatus.IDLE) {
       dispatch(fetchTrips());
     }
-  }, []);
+  });
 
   return (
     <View className="flex-1 items-center justify-center bg-white space-y-10">
