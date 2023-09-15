@@ -6,19 +6,19 @@ export const setStorage = async <T>(
   value: T,
   key: string
 ): Promise<boolean> => {
-  let response: boolean = false;
-  await storeData<T>(value, key).then((success) => {
-    !success ?? Alert.alert(error.Something_Wrong);
-    response = success;
-  });
-  return response;
+  try {
+    await storeData<T>(value, key);
+    return true;
+  } catch (e) {
+    Alert.alert(error.Something_Wrong);
+    return false;
+  }
 };
 
-export const storeData = async <T>(value: T, key: string): Promise<boolean> => {
+export const storeData = async <T>(value: T, key: string): Promise<void> => {
   try {
     const jsonValue = JSON.stringify(value);
-    await AsyncStorage.setItem(key, jsonValue);
-    return true;
+    return AsyncStorage.setItem(key, jsonValue);
   } catch (e) {
     throw new Error(`Not able to store data for key ${key}. Error ${e}`);
   }
