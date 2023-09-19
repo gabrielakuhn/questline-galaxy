@@ -4,15 +4,34 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootScreensParamList } from "./Models/Screens";
 import { Text, ScrollView, TextInput, View } from "react-native";
 import { useState } from "react";
-import { Trip as TripModel } from "@/domain/Trip/Models/Trip";
+import { storeTripIntoLocalStorage } from "@/domain/Trip/Application/TripsStorage";
+import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
+
+import {
+  addTrip as addTripToStore,
+  getAllTrips,
+} from "@/store/Domain/trips-slice";
+import { Trips } from "@/domain/Trip/Models/Trips";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
 export const CreateTrip = ({ navigation, route }: Props) => {
+  const dispatch = useAppDispatch();
+  const trips = useAppSelector(getAllTrips);
+
   const [tripName, setTripName] = useState<string>("");
 
-  const creatTrip = () => {
-    console.log("create");
+  const createTrip = async (name: string): Promise<void> => {
+    const newTrip = {
+      id: new Date().getTime().toString(),
+      name,
+      start: new Date().toString(),
+    };
+
+    const isStored = await storeTripIntoLocalStorage(trips, newTrip);
+    if (isStored) {
+      dispatch(addTripToStore(newTrip));
+    }
   };
 
   return (
@@ -22,13 +41,22 @@ export const CreateTrip = ({ navigation, route }: Props) => {
           <Text className="text-lg">Choose or type the trip Name:</Text>
           <View className="flex items-center space-y-4">
             <View>
-              <Button onPress={() => setTripName("EXC")} title="EXC" />
+              <Button
+                onPress={() => setTripName(Trips.Energy)}
+                title={Trips.Energy}
+              />
             </View>
             <View>
-              <Button onPress={() => setTripName("LSD")} title="LSD" />
+              <Button
+                onPress={() => setTripName(Trips.Psy)}
+                title={Trips.Psy}
+              />
             </View>
             <View>
-              <Button onPress={() => setTripName("QUETA")} title="QUETA" />
+              <Button
+                onPress={() => setTripName(Trips.Love)}
+                title={Trips.Love}
+              />
             </View>
           </View>
           <View>
@@ -40,7 +68,7 @@ export const CreateTrip = ({ navigation, route }: Props) => {
             />
           </View>
           <View>
-            <Button onPress={() => creatTrip()} title="Create" />
+            <Button onPress={() => createTrip(tripName)} title="Create" />
           </View>
         </View>
       </ScrollView>
