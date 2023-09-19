@@ -26,19 +26,6 @@ export const Home = ({ navigation, route }: Props) => {
     (state: RootState) => state.tripsStore
   );
 
-  const createTrip = async (name: string): Promise<void> => {
-    const newTrip = {
-      id: new Date().getTime().toString(),
-      name,
-      start: new Date().toString(),
-    };
-
-    const isStored = await storeTripIntoLocalStorage(trips, newTrip);
-    if (isStored) {
-      dispatch(addTripToState(newTrip));
-    }
-  };
-
   const removeTrip = async (id: string): Promise<void> => {
     const isRemoved = await removeTripFromLocalStorage(trips, id);
     if (isRemoved) {
