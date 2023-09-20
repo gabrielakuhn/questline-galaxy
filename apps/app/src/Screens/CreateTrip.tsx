@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button";
 import { Menu } from "@/domain/Menu/Menu";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList } from "./Models/Screens";
+import { RootScreensParamList, Screen } from "./Models/Screens";
 import { Text, ScrollView, TextInput, View } from "react-native";
 import { useState } from "react";
 import { storeTripIntoLocalStorage } from "@/domain/Trip/Application/TripsStorage";
@@ -31,6 +31,7 @@ export const CreateTrip = ({ navigation, route }: Props) => {
     const isStored = await storeTripIntoLocalStorage(trips, newTrip);
     if (isStored) {
       dispatch(addTripToStore(newTrip));
+      navigation.navigate(Screen.Home);
     }
   };
 
