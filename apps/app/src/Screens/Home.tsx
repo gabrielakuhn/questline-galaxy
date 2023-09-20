@@ -6,17 +6,14 @@ import { Button } from "@/components/Button";
 import { useEffect } from "react";
 import { Trip } from "@/domain/Trip/Trip";
 import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
-import { fetchTrips } from "@/store/Domain/trips-slice";
-import { RootState } from "@/store/store";
+import { fetchTrips, getTripStore } from "@/store/Domain/trips-slice";
 import { StoreStatus } from "@/store/Infrastructure/Status";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
 export const Home = ({ navigation, route }: Props) => {
   const dispatch = useAppDispatch();
-  const { trips, status: tripsStatus } = useAppSelector(
-    (state: RootState) => state.tripsStore
-  );
+  const { trips, status: tripsStatus } = useAppSelector(getTripStore);
 
   useEffect(() => {
     if (tripsStatus === StoreStatus.IDLE) {

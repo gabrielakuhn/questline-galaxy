@@ -2,7 +2,7 @@ import { Button, Text, View } from "react-native";
 import { Timer } from "../../components/Timer";
 import { Trip as TripModel } from "./Models/Trip";
 import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
-import { getAllTrips } from "@/store/Domain/trips-slice";
+import { getTripStore } from "@/store/Domain/trips-slice";
 import { removeTrip as removeTripFromState } from "@/store/Domain/trips-slice";
 import { removeTripFromLocalStorage } from "./Application/TripsStorage";
 
@@ -12,7 +12,7 @@ interface Props {
 
 export const Trip = ({ trip }: Props) => {
   const dispatch = useAppDispatch();
-  const trips = useAppSelector(getAllTrips);
+  const { trips } = useAppSelector(getTripStore);
 
   const deleteTrip = async (id: string): Promise<void> => {
     const isRemoved = await removeTripFromLocalStorage(trips, id);
