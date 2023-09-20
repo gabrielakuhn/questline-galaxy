@@ -6,13 +6,9 @@ import { Button } from "@/components/Button";
 import { useEffect } from "react";
 import { Trip } from "@/domain/Trip/Trip";
 import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
-import {
-  fetchTrips,
-  removeTrip as removeTripFromState,
-} from "@/store/Domain/trips-slice";
+import { fetchTrips } from "@/store/Domain/trips-slice";
 import { RootState } from "@/store/store";
 import { StoreStatus } from "@/store/Infrastructure/Status";
-import { removeTripFromLocalStorage } from "@/domain/Trip/Application/TripsStorage";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
@@ -21,13 +17,6 @@ export const Home = ({ navigation, route }: Props) => {
   const { trips, status: tripsStatus } = useAppSelector(
     (state: RootState) => state.tripsStore
   );
-
-  const removeTrip = async (id: string): Promise<void> => {
-    const isRemoved = await removeTripFromLocalStorage(trips, id);
-    if (isRemoved) {
-      dispatch(removeTripFromState(id));
-    }
-  };
 
   useEffect(() => {
     if (tripsStatus === StoreStatus.IDLE) {
@@ -49,7 +38,7 @@ export const Home = ({ navigation, route }: Props) => {
               key={trip.id}
               className="border border-slate-400 border-dashed rounded-2xl"
             >
-              <Trip trip={trip} remove={removeTrip} />
+              <Trip trip={trip} />
             </View>
           ))}
           <View>
