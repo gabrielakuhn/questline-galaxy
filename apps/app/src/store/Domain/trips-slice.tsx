@@ -53,8 +53,8 @@ const tripsSlice = createSlice({
   },
 });
 
-export const getAllTrips = (state: RootState): TripModel[] =>
-  state.tripsStore.trips;
+export const getTripStore = (state: RootState): FetchTripsRequest =>
+  state.tripsStore;
 
 export const { addTrip, removeTrip } = tripsSlice.actions;
 export default tripsSlice.reducer;

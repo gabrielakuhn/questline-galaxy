@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
 
 import {
   addTrip as addTripToStore,
-  getAllTrips,
+  getTripStore,
 } from "@/store/Domain/trips-slice";
 import { Trips } from "@/domain/Trip/Models/Trips";
 
@@ -17,7 +17,7 @@ type Props = NativeStackScreenProps<RootScreensParamList>;
 
 export const CreateTrip = ({ navigation, route }: Props) => {
   const dispatch = useAppDispatch();
-  const trips = useAppSelector(getAllTrips);
+  const { trips } = useAppSelector(getTripStore);
 
   const [tripName, setTripName] = useState<string>("");
 
