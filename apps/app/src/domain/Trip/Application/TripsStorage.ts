@@ -6,7 +6,7 @@ export const storeTripIntoLocalStorage = (
   currentTrips: TripModel[],
   newValue: TripModel
 ): Promise<boolean> => {
-  const newState = [...currentTrips, newValue];
+  const newState = [newValue, ...currentTrips];
   const isStored = setStorage<TripModel[]>(newState, StorageKey.Trips);
   return isStored;
 };

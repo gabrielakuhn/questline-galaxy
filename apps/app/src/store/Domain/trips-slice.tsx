@@ -32,7 +32,7 @@ const tripsSlice = createSlice({
   initialState,
   reducers: {
     addTrip(state, action) {
-      state.trips = [...state.trips, action.payload];
+      state.trips = [action.payload, ...state.trips];
     },
     removeTrip(state, action) {
       const id = action.payload;
