@@ -20,7 +20,7 @@ export const storeData = async <T>(value: T, key: string): Promise<void> => {
     const jsonValue = JSON.stringify(value);
     return AsyncStorage.setItem(key, jsonValue);
   } catch (e) {
-    throw new Error(`Not able to store data for key ${key}. Error ${e}`);
+    throw new Error(`Not able to store data for key ${key}`, { cause: e });
   }
 };
 
@@ -29,6 +29,6 @@ export const getData = async <T>(key: string): Promise<T> => {
     const jsonValue = await AsyncStorage.getItem(key);
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (e) {
-    throw new Error(`Not able to get data for key ${key}. Error ${e}`);
+    throw new Error(`Not able to get data for key ${key}`, { cause: e });
   }
 };
