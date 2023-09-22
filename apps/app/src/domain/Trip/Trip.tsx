@@ -4,7 +4,8 @@ import { Trip as TripModel } from "./Models/Trip";
 import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
 import { getTripStore } from "@/store/Domain/trips-slice";
 import { removeTrip as removeTripFromState } from "@/store/Domain/trips-slice";
-import { removeTripFromLocalStorage } from "./Application/TripsStorage";
+import { removeValueFromStoredArray } from "@/infrastructure/storage/Application/Helper";
+import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
 
 interface Props {
   trip: TripModel;
@@ -15,7 +16,12 @@ export const Trip = ({ trip }: Props) => {
   const { trips } = useAppSelector(getTripStore);
 
   const deleteTrip = async (id: string): Promise<void> => {
-    const isRemoved = await removeTripFromLocalStorage(trips, id);
+    const isRemoved = await removeValueFromStoredArray(
+      trips,
+      id,
+      StorageKey.Trips
+    );
+
     if (isRemoved) {
       dispatch(removeTripFromState(id));
     }
