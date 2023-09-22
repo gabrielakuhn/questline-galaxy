@@ -3,7 +3,6 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootScreensParamList, Screen } from "./Models/Screens";
 import { Text, TextInput, View } from "react-native";
 import { useState } from "react";
-import { storeTripIntoLocalStorage } from "@/domain/Trip/Application/TripsStorage";
 import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
 
 import {
@@ -12,6 +11,8 @@ import {
 } from "@/store/Domain/trips-slice";
 import { Trips } from "@/domain/Trip/Models/Trips";
 import { Layout } from "./Layout";
+import { storeValueIntoStoredArray } from "@/infrastructure/storage/Application/Helper";
+import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
@@ -28,7 +29,12 @@ export const CreateTrip = ({ navigation, route }: Props) => {
       start: new Date().toString(),
     };
 
-    const isStored = await storeTripIntoLocalStorage(trips, newTrip);
+    const isStored = await storeValueIntoStoredArray(
+      trips,
+      newTrip,
+      StorageKey.Trips
+    );
+
     if (isStored) {
       dispatch(addTripToStore(newTrip));
       navigation.navigate(Screen.Home);
