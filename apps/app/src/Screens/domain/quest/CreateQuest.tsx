@@ -1,17 +1,17 @@
-import { Button } from "@/components/Button";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList } from "../Models/Screens";
-import { Text, TextInput, View } from "react-native";
-import { Layout } from "../Layout";
-import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
-import {
-  add as addQuestToStore,
-  getQuestStore,
-} from "@/store/Domain/quest-slice";
 import { useState } from "react";
-import { storeValueIntoStoredArray } from "@/infrastructure/storage/Application/Helper";
-import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
-import { Quests as questList } from "@/domain/Quest/Models/QuestsList";
+import { Text, TextInput, View } from "react-native";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+import { Button } from "@/components/generic/Button";
+import { Layout } from "@/screens/Layout";
+import { Quests as questsList } from "@/data/domain/list";
+import { RootScreensParamList } from "@/types";
+import { addQuest as addQuestToStore, getQuestStore } from "@/store/domain";
+import { useAppDispatch, useAppSelector } from "@/store/infrastructure";
+import {
+  StorageKey,
+  storeValueIntoStoredArray,
+} from "@/infrastructure/storage";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
@@ -45,7 +45,7 @@ export const CreateQuest = ({ navigation, route }: Props) => {
       <View className="space-y-8">
         <Text className="text-lg">Choose or type the quest:</Text>
         <View className="flex items-center space-y-4">
-          {questList.map((quest) => (
+          {questsList.map((quest) => (
             <View>
               <Button
                 onPress={() => setQuestName(quest.name)}

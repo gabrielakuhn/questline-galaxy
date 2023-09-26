@@ -1,18 +1,17 @@
-import { Button } from "@/components/Button";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList, Screen } from "./Models/Screens";
-import { Text, TextInput, View } from "react-native";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
+import { Text, TextInput, View } from "react-native";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
+import { Layout } from "@/screens/Layout";
+import { RootScreensParamList } from "@/types";
+import { Button } from "@/components";
+import { Screen, Trips as tripsList } from "@/data/domain/list";
+import { useAppDispatch, useAppSelector } from "@/store/infrastructure";
+import { addTrip as addTripToStore, getTripStore } from "@/store/domain";
 import {
-  addTrip as addTripToStore,
-  getTripStore,
-} from "@/store/Domain/trips-slice";
-import { Trips as tripList } from "@/domain/Trip/Models/Trips";
-import { Layout } from "./Layout";
-import { storeValueIntoStoredArray } from "@/infrastructure/storage/Application/Helper";
-import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
+  StorageKey,
+  storeValueIntoStoredArray,
+} from "@/infrastructure/storage";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
@@ -46,7 +45,7 @@ export const CreateTrip = ({ navigation, route }: Props) => {
       <View className="space-y-8">
         <Text className="text-lg">Choose or type the trip Name:</Text>
         <View className="flex items-center space-y-4">
-          {tripList.map((trip) => (
+          {tripsList.map((trip) => (
             <View>
               <Button
                 onPress={() => setTripName(trip.name)}

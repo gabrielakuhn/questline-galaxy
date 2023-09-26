@@ -1,12 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { Quest } from "@/types";
+import { StoreRequest, StoreStatus } from "../infrastructure";
 import { RootState } from "../store";
-
-import { StoreRequest } from "../Infrastructure/Request";
-import { StoreStatus } from "../Infrastructure/Status";
-import { getData } from "@/infrastructure/storage/localstorage/AsyncStorage";
-import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
-import { Quest } from "@/domain/Quest/Models/Quest";
+import { StorageKey, getData } from "@/infrastructure/storage";
 
 export const fetchQuests = createAsyncThunk("quests/fetchQuests", async () => {
   let questsResponse: Quest[] = [];
@@ -32,10 +29,10 @@ const questsSlice = createSlice({
   name: "quests",
   initialState,
   reducers: {
-    add(state, action) {
+    addQuest(state, action) {
       state.quests = [action.payload, ...state.quests];
     },
-    remove(state, action) {
+    removeQuest(state, action) {
       const id = action.payload;
       state.quests = state.quests.filter((quest) => quest.id !== id);
     },
@@ -57,5 +54,5 @@ const questsSlice = createSlice({
 export const getQuestStore = (state: RootState): FetchQuestRequest =>
   state.questsStore;
 
-export const { add, remove } = questsSlice.actions;
+export const { addQuest, removeQuest } = questsSlice.actions;
 export default questsSlice.reducer;

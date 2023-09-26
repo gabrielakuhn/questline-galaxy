@@ -2,13 +2,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider as ReduxProvider } from "react-redux";
 
-import { Home } from "@/Screens/Home";
-import { Crew } from "@/Screens/Crew";
-import { Quests } from "@/Screens/Quest/Quests";
-import { RootScreensParamList, Screen } from "@/Screens/Models/Screens";
+import { Home } from "@/screens/Home";
+import { Crew } from "@/screens/domain/crew/Crew";
+import { Quests } from "@/screens/domain/quest/Quests";
 import { store } from "@/store/store";
-import { CreateTrip } from "@/Screens/CreateTrip";
-import { CreateQuest } from "@/Screens/Quest/CreateQuest";
+import { CreateTrip } from "@/screens/domain/trip/CreateTrip";
+import { CreateQuest } from "@/screens/domain/quest/CreateQuest";
+import { RootScreensParamList } from "@/types/domain/Screen";
+import { Screen } from "@/data/domain/list/Screen";
 
 const Stack = createNativeStackNavigator<RootScreensParamList>();
 

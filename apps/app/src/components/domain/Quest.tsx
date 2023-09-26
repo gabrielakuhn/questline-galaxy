@@ -1,13 +1,16 @@
 import { Button, Text, View } from "react-native";
-import { Quest as QuestModel } from "./Models/Quest";
-import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
+import { Timer } from "@/components/generic/Timer";
+import { Quest as QuestModel } from "@/types";
+
+import {
+  StorageKey,
+  removeValueFromStoredArray,
+} from "@/infrastructure/storage";
+import { useAppDispatch, useAppSelector } from "@/store/infrastructure";
 import {
   getQuestStore,
-  remove as removeQuestFromState,
-} from "@/store/Domain/quest-slice";
-import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
-import { removeValueFromStoredArray } from "@/infrastructure/storage/Application/Helper";
-import { Timer } from "@/components/Timer";
+  removeQuest as removeQuestFromState,
+} from "@/store/domain";
 
 interface Props {
   quest: QuestModel;
