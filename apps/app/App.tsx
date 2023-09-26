@@ -9,7 +9,7 @@ import { store } from "@/store/store";
 import { CreateTrip } from "@/screens/domain/trip/CreateTrip";
 import { CreateQuest } from "@/screens/domain/quest/CreateQuest";
 import { RootScreensParamList } from "@/types/domain/Screen";
-import { Screen } from "@/data/domain/list/Screen";
+import { Screen } from "@/data/domain/lists/Screen";
 
 const Stack = createNativeStackNavigator<RootScreensParamList>();
 

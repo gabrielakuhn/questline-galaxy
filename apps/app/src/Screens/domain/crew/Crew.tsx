@@ -2,7 +2,7 @@ import { Text } from "react-native";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootScreensParamList } from "@/types";
-import { Screen } from "@/data/domain/list";
+import { Screen } from "@/data/domain/lists";
 import { ScreenWrap } from "@/screens/ScreenWrap";
 
 type Props = NativeStackScreenProps<RootScreensParamList, Screen.Crew>;

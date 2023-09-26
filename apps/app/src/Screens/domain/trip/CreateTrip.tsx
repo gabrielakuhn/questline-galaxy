@@ -5,7 +5,7 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ScreenWrap } from "@/screens/ScreenWrap";
 import { RootScreensParamList } from "@/types";
 import { Button } from "@/components";
-import { Screen, Trips as tripsList } from "@/data/domain/list";
+import { Screen, Trips as tripsList } from "@/data/domain/lists";
 import { useAppDispatch, useAppSelector } from "@/store/infrastructure";
 import { addTrip as addTripToStore, getTripStore } from "@/store/domain";
 import {

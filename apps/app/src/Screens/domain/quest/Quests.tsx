@@ -6,7 +6,7 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ScreenWrap } from "@/screens/ScreenWrap";
 import { Quest } from "@/components";
 import { RootScreensParamList } from "@/types";
-import { Screen } from "@/data/domain/list";
+import { Screen } from "@/data/domain/lists";
 import {
   StoreStatus,
   useAppDispatch,
