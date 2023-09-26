@@ -9,7 +9,7 @@ import {
   addTrip as addTripToStore,
   getTripStore,
 } from "@/store/Domain/trips-slice";
-import { Trips } from "@/domain/Trip/Models/Trips";
+import { Trips as tripList } from "@/domain/Trip/Models/Trips";
 import { Layout } from "./Layout";
 import { storeValueIntoStoredArray } from "@/infrastructure/storage/Application/Helper";
 import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
@@ -46,21 +46,14 @@ export const CreateTrip = ({ navigation, route }: Props) => {
       <View className="space-y-8">
         <Text className="text-lg">Choose or type the trip Name:</Text>
         <View className="flex items-center space-y-4">
-          <View>
-            <Button
-              onPress={() => setTripName(Trips.Energy)}
-              title={Trips.Energy}
-            />
-          </View>
-          <View>
-            <Button onPress={() => setTripName(Trips.Psy)} title={Trips.Psy} />
-          </View>
-          <View>
-            <Button
-              onPress={() => setTripName(Trips.Love)}
-              title={Trips.Love}
-            />
-          </View>
+          {tripList.map((trip) => (
+            <View>
+              <Button
+                onPress={() => setTripName(trip.name)}
+                title={trip.name}
+              />
+            </View>
+          ))}
         </View>
         <View>
           <Text className="text-lg">Trip Name:</Text>

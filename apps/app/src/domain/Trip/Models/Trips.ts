@@ -1,5 +1,11 @@
-export enum Trips {
-  Energy = "Energy",
-  Psy = "Psy",
-  Love = "Love",
-}
+export const Trips = [
+  {
+    name: "Energy",
+  },
+  {
+    name: "Psy",
+  },
+  {
+    name: "Love",
+  },
+];
