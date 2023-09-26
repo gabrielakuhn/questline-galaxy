@@ -3,7 +3,7 @@ import { Button } from "@/components/generic/Button";
 import { View, Text } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { Layout } from "@/screens/Layout";
+import { ScreenWrap } from "@/screens/ScreenWrap";
 import { Quest } from "@/components";
 import { RootScreensParamList } from "@/types";
 import { Screen } from "@/data/domain/list";
@@ -27,7 +27,7 @@ export const Quests = ({ navigation, route }: Props) => {
   });
 
   return (
-    <Layout navigation={navigation} route={route}>
+    <ScreenWrap navigation={navigation} route={route}>
       <View className="space-y-8">
         <Text>Questline app met Typescript en Nativewind!</Text>
         {quests.map((quest) => (
@@ -45,6 +45,6 @@ export const Quests = ({ navigation, route }: Props) => {
           />
         </View>
       </View>
-    </Layout>
+    </ScreenWrap>
   );
 };

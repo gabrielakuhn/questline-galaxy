@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { Layout } from "@/screens/Layout";
+import { ScreenWrap } from "@/screens/ScreenWrap";
 import { RootScreensParamList } from "@/types";
 import { Button } from "@/components";
 import { Screen, Trips as tripsList } from "@/data/domain/list";
@@ -41,7 +41,7 @@ export const CreateTrip = ({ navigation, route }: Props) => {
   };
 
   return (
-    <Layout navigation={navigation} route={route}>
+    <ScreenWrap navigation={navigation} route={route}>
       <View className="space-y-8">
         <Text className="text-lg">Choose or type the trip Name:</Text>
         <View className="flex items-center space-y-4">
@@ -66,6 +66,6 @@ export const CreateTrip = ({ navigation, route }: Props) => {
           <Button onPress={() => createTrip(tripName)} title="Create" />
         </View>
       </View>
-    </Layout>
+    </ScreenWrap>
   );
 };
