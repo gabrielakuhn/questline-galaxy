@@ -46,7 +46,7 @@ export const CreateTrip = ({ navigation, route }: Props) => {
         <Text className="text-lg">Choose or type the trip Name:</Text>
         <View className="flex items-center space-y-4">
           {tripsList.map((trip) => (
-            <View>
+            <View key={trip.name}>
               <Button
                 onPress={() => setTripName(trip.name)}
                 title={trip.name}

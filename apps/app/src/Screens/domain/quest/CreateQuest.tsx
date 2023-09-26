@@ -46,7 +46,7 @@ export const CreateQuest = ({ navigation, route }: Props) => {
         <Text className="text-lg">Choose or type the quest:</Text>
         <View className="flex items-center space-y-4">
           {questsList.map((quest) => (
-            <View>
+            <View key={quest.name}>
               <Button
                 onPress={() => setQuestName(quest.name)}
                 title={quest.name}
