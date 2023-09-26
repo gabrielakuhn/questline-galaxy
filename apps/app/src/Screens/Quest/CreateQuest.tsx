@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import { storeValueIntoStoredArray } from "@/infrastructure/storage/Application/Helper";
 import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
-import { Quests } from "@/domain/Quest/Models/QuestsList";
+import { Quests as questList } from "@/domain/Quest/Models/QuestsList";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 
@@ -45,36 +45,14 @@ export const CreateQuest = ({ navigation, route }: Props) => {
       <View className="space-y-8">
         <Text className="text-lg">Choose or type the quest:</Text>
         <View className="flex items-center space-y-4">
-          <View>
-            <Button
-              onPress={() => setQuestName(Quests.bathroon.name)}
-              title={Quests.bathroon.name}
-            />
-          </View>
-          <View>
-            <Button
-              onPress={() => setQuestName(Quests.drink.name)}
-              title={Quests.drink.name}
-            />
-          </View>
-          <View>
-            <Button
-              onPress={() => setQuestName(Quests.food.name)}
-              title={Quests.food.name}
-            />
-          </View>
-          <View>
-            <Button
-              onPress={() => setQuestName(Quests.item.name)}
-              title={Quests.item.name}
-            />
-          </View>
-          <View>
-            <Button
-              onPress={() => setQuestName(Quests.person.name)}
-              title={Quests.person.name}
-            />
-          </View>
+          {questList.map((quest) => (
+            <View>
+              <Button
+                onPress={() => setQuestName(quest.name)}
+                title={quest.name}
+              />
+            </View>
+          ))}
         </View>
         <View>
           <Text className="text-lg">Quest Name:</Text>
