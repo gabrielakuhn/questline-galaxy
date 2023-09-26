@@ -11,7 +11,7 @@ import {
 import { fetchTrips, getTripStore } from "@/store/domain";
 import { ScreenWrap } from "@/screens/ScreenWrap";
 import { Trip, Button } from "@/components";
-import { Screen } from "@/data/domain/list";
+import { Screen } from "@/data/domain/lists";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 

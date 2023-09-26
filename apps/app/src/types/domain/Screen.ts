@@ -1,4 +1,4 @@
-import { Screen } from "@/data/domain/list";
+import { Screen } from "@/data/domain/lists";
 
 export type RootScreensParamList = {
   [Screen.Home]: undefined;

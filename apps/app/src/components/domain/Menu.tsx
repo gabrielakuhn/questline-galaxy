@@ -2,7 +2,7 @@ import { View } from "react-native";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootScreensParamList } from "@/types/domain/Screen";
-import { Screen } from "@/data/domain/list/Screen";
+import { Screen } from "@/data/domain/lists/Screen";
 import { IconButton } from "@/components/generic/IconButton";
 
 type MenuProps = NativeStackScreenProps<RootScreensParamList>;

@@ -4,7 +4,7 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Button } from "@/components/generic/Button";
 import { ScreenWrap } from "@/screens/ScreenWrap";
-import { Quests as questsList } from "@/data/domain/list";
+import { Quests as questsList } from "@/data/domain/lists";
 import { RootScreensParamList } from "@/types";
 import { addQuest as addQuestToStore, getQuestStore } from "@/store/domain";
 import { useAppDispatch, useAppSelector } from "@/store/infrastructure";
