@@ -1,16 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { RootState } from "../store";
-import { Trip as TripModel } from "@/domain/Trip/Models/Trip";
-import { StoreRequest } from "../Infrastructure/Request";
-import { StoreStatus } from "../Infrastructure/Status";
-import { getData } from "@/infrastructure/storage/localstorage/AsyncStorage";
-import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
+import { Trip } from "@/types";
+import { RootState, StoreRequest, StoreStatus } from "../infrastructure";
+import { StorageKey, getData } from "@/infrastructure/storage";
 
 export const fetchTrips = createAsyncThunk("trips/fetchTrips", async () => {
-  let tripsResponse: TripModel[] = [];
+  let tripsResponse: Trip[] = [];
 
-  await getData<TripModel[]>(StorageKey.Trips).then((value) => {
+  await getData<Trip[]>(StorageKey.Trips).then((value) => {
     tripsResponse = value;
   });
 
@@ -18,7 +15,7 @@ export const fetchTrips = createAsyncThunk("trips/fetchTrips", async () => {
 });
 
 interface FetchTripsRequest extends StoreRequest {
-  trips: TripModel[];
+  trips: Trip[];
 }
 
 const initialState: FetchTripsRequest = {

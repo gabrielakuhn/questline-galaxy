@@ -1,10 +1,4 @@
-export enum Screen {
-  Home = "Home",
-  Crew = "Crew",
-  Quests = "Quests",
-  CreateTrip = "CreateTrip",
-  CreateQuest = "CreateQuest",
-}
+import { Screen } from "@/data/domain/list";
 
 export type RootScreensParamList = {
   [Screen.Home]: undefined;

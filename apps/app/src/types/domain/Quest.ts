@@ -1,4 +1,4 @@
-import { CrewMember } from "@/domain/Crew/Models/CrewMember";
+import { CrewMember } from "@/types";
 
 export type Quest = {
   id: string;

@@ -1,11 +1,15 @@
+import {
+  StorageKey,
+  removeValueFromStoredArray,
+} from "@/infrastructure/storage";
+import {
+  getTripStore,
+  removeTrip as removeTripFromState,
+} from "@/store/domain";
+import { useAppDispatch, useAppSelector } from "@/store/infrastructure";
+import { Trip as TripModel } from "@/types";
 import { Button, Text, View } from "react-native";
-import { Timer } from "../../components/Timer";
-import { Trip as TripModel } from "./Models/Trip";
-import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
-import { getTripStore } from "@/store/Domain/trips-slice";
-import { removeTrip as removeTripFromState } from "@/store/Domain/trips-slice";
-import { removeValueFromStoredArray } from "@/infrastructure/storage/Application/Helper";
-import { StorageKey } from "@/infrastructure/storage/localstorage/Keys";
+import { Timer } from "@/components/generic/Timer";
 
 interface Props {
   trip: TripModel;

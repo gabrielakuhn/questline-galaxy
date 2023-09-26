@@ -1,13 +1,17 @@
+import { useEffect } from "react";
 import { Text, View } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList, Screen } from "./Models/Screens";
-import { Button } from "@/components/Button";
-import { useEffect } from "react";
-import { Trip } from "@/domain/Trip/Trip";
-import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
-import { fetchTrips, getTripStore } from "@/store/Domain/trips-slice";
-import { StoreStatus } from "@/store/Infrastructure/Status";
-import { Layout } from "./Layout";
+
+import { RootScreensParamList } from "@/types";
+import {
+  StoreStatus,
+  useAppDispatch,
+  useAppSelector,
+} from "@/store/infrastructure";
+import { fetchTrips, getTripStore } from "@/store/domain";
+import { Layout } from "@/screens/Layout";
+import { Trip, Button } from "@/components";
+import { Screen } from "@/data/domain/list";
 
 type Props = NativeStackScreenProps<RootScreensParamList>;
 

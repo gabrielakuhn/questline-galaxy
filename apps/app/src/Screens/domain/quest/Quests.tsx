@@ -1,14 +1,18 @@
-import { Button } from "@/components/Button";
-import { View } from "react-native";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList, Screen } from "../Models/Screens";
-import { Layout } from "../Layout";
-import { Text } from "@rneui/base";
-import { fetchQuests, getQuestStore } from "@/store/Domain/quest-slice";
-import { useAppDispatch, useAppSelector } from "@/store/Infrastructure/Hooks";
-import { StoreStatus } from "@/store/Infrastructure/Status";
 import { useEffect } from "react";
-import { Quest } from "@/domain/Quest/Quest";
+import { Button } from "@/components/generic/Button";
+import { View, Text } from "react-native";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+import { Layout } from "@/screens/Layout";
+import { Quest } from "@/components";
+import { RootScreensParamList } from "@/types";
+import { Screen } from "@/data/domain/list";
+import {
+  StoreStatus,
+  useAppDispatch,
+  useAppSelector,
+} from "@/store/infrastructure";
+import { fetchQuests, getQuestStore } from "@/store/domain";
 
 type Props = NativeStackScreenProps<RootScreensParamList, Screen.Quests>;
 

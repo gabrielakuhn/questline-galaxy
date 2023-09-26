@@ -1,4 +1,4 @@
-import { Timer as TimerModel } from "@/components/Models/Timer";
+import { Timer as TimerModel } from "@/types";
 import { leftPad } from "@/infrastructure/utilities";
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";

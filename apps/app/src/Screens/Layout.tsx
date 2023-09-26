@@ -1,8 +1,9 @@
-import { Menu } from "@/domain/Menu/Menu";
 import { ReactNode } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList } from "./Models/Screens";
+
+import { RootScreensParamList } from "@/types";
+import { Menu } from "@/components";
 
 interface Props extends NativeStackScreenProps<RootScreensParamList> {
   children: ReactNode;

@@ -1,8 +1,9 @@
 import { Text } from "react-native";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootScreensParamList, Screen } from "./Models/Screens";
-import { Layout } from "./Layout";
+import { RootScreensParamList } from "@/types";
+import { Screen } from "@/data/domain/list";
+import { Layout } from "@/screens/Layout";
 
 type Props = NativeStackScreenProps<RootScreensParamList, Screen.Crew>;
 
