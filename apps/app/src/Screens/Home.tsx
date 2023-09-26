@@ -9,7 +9,7 @@ import {
   useAppSelector,
 } from "@/store/infrastructure";
 import { fetchTrips, getTripStore } from "@/store/domain";
-import { Layout } from "@/screens/Layout";
+import { ScreenWrap } from "@/screens/ScreenWrap";
 import { Trip, Button } from "@/components";
 import { Screen } from "@/data/domain/list";
 
@@ -26,7 +26,7 @@ export const Home = ({ navigation, route }: Props) => {
   });
 
   return (
-    <Layout navigation={navigation} route={route}>
+    <ScreenWrap navigation={navigation} route={route}>
       <View className="space-y-8">
         <Text>Questline app met Typescript en Nativewind!</Text>
         {trips.map((trip) => (
@@ -44,6 +44,6 @@ export const Home = ({ navigation, route }: Props) => {
           />
         </View>
       </View>
-    </Layout>
+    </ScreenWrap>
   );
 };

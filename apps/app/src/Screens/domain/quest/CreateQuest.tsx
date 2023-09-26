@@ -3,7 +3,7 @@ import { Text, TextInput, View } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Button } from "@/components/generic/Button";
-import { Layout } from "@/screens/Layout";
+import { ScreenWrap } from "@/screens/ScreenWrap";
 import { Quests as questsList } from "@/data/domain/list";
 import { RootScreensParamList } from "@/types";
 import { addQuest as addQuestToStore, getQuestStore } from "@/store/domain";
@@ -41,7 +41,7 @@ export const CreateQuest = ({ navigation, route }: Props) => {
   };
 
   return (
-    <Layout navigation={navigation} route={route}>
+    <ScreenWrap navigation={navigation} route={route}>
       <View className="space-y-8">
         <Text className="text-lg">Choose or type the quest:</Text>
         <View className="flex items-center space-y-4">
@@ -66,6 +66,6 @@ export const CreateQuest = ({ navigation, route }: Props) => {
           <Button onPress={() => createQuest(questName)} title="Start Quest" />
         </View>
       </View>
-    </Layout>
+    </ScreenWrap>
   );
 };

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Layout = ({ children, navigation, route }: Props) => {
+export const ScreenWrap = ({ children, navigation, route }: Props) => {
   return (
     <View className="flex-1">
       <ScrollView contentContainerStyle={styles.contentContainer}>
