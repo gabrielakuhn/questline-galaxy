@@ -41,7 +41,7 @@ export const Quests = ({ navigation, route }: Props) => {
         <View>
           <Button
             onPress={() => navigation.navigate(Screen.CreateQuest)}
-            title="Add Trip"
+            title="Add Quest"
           />
         </View>
       </View>

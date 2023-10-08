@@ -21,3 +21,25 @@ export const removeValueFromStoredArray = <T extends { id?: string }>(
   const isRemoved = setStorage<T[]>(newState, key);
   return isRemoved;
 };
+
+export const modifyValueIntoStoredArray = <
+  T extends { id?: string },
+  K extends { id?: string }
+>(
+  currentArray: T[],
+  modifiedValue: K,
+  key: StorageKey
+): Promise<boolean> => {
+  const indexToModify = currentArray.findIndex(
+    (value) => value.id == modifiedValue.id
+  );
+
+  currentArray[indexToModify] = {
+    ...currentArray[indexToModify],
+    ...modifiedValue,
+  };
+
+  const newState = currentArray;
+  const isStored = setStorage<T[]>(newState, key);
+  return isStored;
+};
