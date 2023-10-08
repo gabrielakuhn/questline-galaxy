@@ -62,5 +62,11 @@ const questsSlice = createSlice({
 export const getQuestStore = (state: RootState): FetchQuestRequest =>
   state.questsStore;
 
+export const getFinishedQuests = (state: RootState): Quest[] =>
+  state.questsStore.quests.filter((quest) => quest.end !== undefined);
+
+export const getUnfinishedQuests = (state: RootState): Quest[] =>
+  state.questsStore.quests.filter((quest) => quest.end === undefined);
+
 export const { addQuest, removeQuest, modifyQuest } = questsSlice.actions;
 export default questsSlice.reducer;
