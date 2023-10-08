@@ -8,7 +8,6 @@ import {
   StorageKey,
   modifyValueIntoStoredArray,
   removeValueFromStoredArray,
-  storeValueIntoStoredArray,
 } from "@/infrastructure/storage";
 import { useAppDispatch, useAppSelector } from "@/store/infrastructure";
 import {
@@ -23,7 +22,7 @@ interface Props {
 }
 
 export const Quest = ({ quest }: Props) => {
-  const [checked, setChecked] = useState(false);
+  const [isQuestFinished, setFinished] = useState(false);
   const dispatch = useAppDispatch();
   const { quests } = useAppSelector(getQuestStore);
 
@@ -40,9 +39,13 @@ export const Quest = ({ quest }: Props) => {
   };
 
   const finishQuest = async (id: string): Promise<void> => {
+    const indexToModify = quests.findIndex((quest) => quest.id == id);
     const modifiedQuest = {
-      id,
-      end: new Date().toString(),
+      ...quests[indexToModify],
+      end:
+        quests[indexToModify].end === undefined
+          ? new Date().toString()
+          : undefined,
     };
 
     const isStored = await modifyValueIntoStoredArray(
@@ -53,21 +56,20 @@ export const Quest = ({ quest }: Props) => {
 
     if (isStored) {
       dispatch(modifyQuestFromState(modifiedQuest));
+      setFinished(!isQuestFinished);
     }
-
-    setChecked(!checked);
   };
 
   useEffect(() => {
-    console.log("NEW STATE", quests);
-  }, [quests]);
+    console.log("NEW STATE", isQuestFinished);
+  }, [isQuestFinished]);
 
   return (
     <View className="flex flex-row p-6 items-center">
       <Text className="font-bold pr-3">{quest.name}</Text>
       <Timer start={new Date(quest.start)} />
       <CheckBox
-        checked={checked}
+        checked={quest.end === undefined ? false : true}
         onPress={() => finishQuest(quest.id)}
         size={24}
       />

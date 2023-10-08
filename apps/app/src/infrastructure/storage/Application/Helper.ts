@@ -22,12 +22,9 @@ export const removeValueFromStoredArray = <T extends { id?: string }>(
   return isRemoved;
 };
 
-export const modifyValueIntoStoredArray = <
-  T extends { id?: string },
-  K extends { id?: string }
->(
+export const modifyValueIntoStoredArray = <T extends { id?: string }>(
   currentArray: T[],
-  modifiedValue: K,
+  modifiedValue: T,
   key: StorageKey
 ): Promise<boolean> => {
   const indexToModify = currentArray.findIndex(

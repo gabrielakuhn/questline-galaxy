@@ -12,13 +12,20 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/store/infrastructure";
-import { fetchQuests, getQuestStore } from "@/store/domain";
+import {
+  fetchQuests,
+  getFinishedQuests,
+  getQuestStore,
+  getUnfinishedQuests,
+} from "@/store/domain";
 
 type Props = NativeStackScreenProps<RootScreensParamList, Screen.Quests>;
 
 export const Quests = ({ navigation, route }: Props) => {
   const dispatch = useAppDispatch();
   const { quests, status: questStatus } = useAppSelector(getQuestStore);
+  const finishedQuests = useAppSelector(getFinishedQuests);
+  const unfinishedQuests = useAppSelector(getUnfinishedQuests);
 
   useEffect(() => {
     if (questStatus === StoreStatus.IDLE) {
@@ -29,15 +36,28 @@ export const Quests = ({ navigation, route }: Props) => {
   return (
     <ScreenWrap navigation={navigation} route={route}>
       <View className="space-y-8">
-        <Text>Questline app met Typescript en Nativewind!</Text>
-        {quests.map((quest) => (
-          <View
-            key={quest.id}
-            className="border border-slate-400 border-dashed rounded-2xl"
-          >
-            <Quest quest={quest} />
-          </View>
-        ))}
+        <View>
+          <Text>Unfinished Quests!</Text>
+          {unfinishedQuests.map((quest) => (
+            <View
+              key={quest.id}
+              className="border border-slate-400 border-dashed rounded-2xl"
+            >
+              <Quest quest={quest} />
+            </View>
+          ))}
+        </View>
+        <View className="border-t-4 border-indigo-500 pt-8">
+          <Text>Finished Quests!</Text>
+          {finishedQuests.map((quest) => (
+            <View
+              key={quest.id}
+              className="border border-slate-400 border-dashed rounded-2xl"
+            >
+              <Quest quest={quest} />
+            </View>
+          ))}
+        </View>
         <View>
           <Button
             onPress={() => navigation.navigate(Screen.CreateQuest)}
