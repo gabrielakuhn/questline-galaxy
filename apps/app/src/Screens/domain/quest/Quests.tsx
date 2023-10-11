@@ -23,7 +23,7 @@ type Props = NativeStackScreenProps<RootScreensParamList, Screen.Quests>;
 
 export const Quests = ({ navigation, route }: Props) => {
   const dispatch = useAppDispatch();
-  const { quests, status: questStatus } = useAppSelector(getQuestStore);
+  const { status: questStatus } = useAppSelector(getQuestStore);
   const finishedQuests = useAppSelector(getFinishedQuests);
   const unfinishedQuests = useAppSelector(getUnfinishedQuests);
 
