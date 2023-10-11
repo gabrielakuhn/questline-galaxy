@@ -2,7 +2,7 @@ import { Button, Text, View } from "react-native";
 import { CheckBox } from "@rneui/themed";
 
 import { Timer } from "@/components/generic/Timer";
-import { Quest as QuestModel } from "@/types";
+import { Quest as QuestType } from "@/types";
 
 import {
   StorageKey,
@@ -15,14 +15,14 @@ import {
   modifyQuest as modifyQuestFromState,
   removeQuest as removeQuestFromState,
 } from "@/store/domain";
-import { useEffect, useState } from "react";
+import { QuestInstance } from "@/constructors/domain/Quest";
 
 interface Props {
-  quest: QuestModel;
+  quest: QuestType;
 }
 
 export const Quest = ({ quest }: Props) => {
-  const [isQuestFinished, setFinished] = useState(false);
+  const thisQuest = new QuestInstance(quest);
   const dispatch = useAppDispatch();
   const { quests } = useAppSelector(getQuestStore);
 
@@ -56,20 +56,19 @@ export const Quest = ({ quest }: Props) => {
 
     if (isStored) {
       dispatch(modifyQuestFromState(modifiedQuest));
-      setFinished(!isQuestFinished);
     }
   };
-
-  useEffect(() => {
-    console.log("NEW STATE", isQuestFinished);
-  }, [isQuestFinished]);
 
   return (
     <View className="flex flex-row p-6 items-center">
       <Text className="font-bold pr-3">{quest.name}</Text>
-      <Timer start={new Date(quest.start)} />
+      <Timer
+        start={quest.start}
+        end={thisQuest.isFinished() ? quest.end : undefined}
+      />
       <CheckBox
-        checked={quest.end === undefined ? false : true}
+        checked={thisQuest.isFinished()}
+        disabled={thisQuest.isFinished()}
         onPress={() => finishQuest(quest.id)}
         size={24}
       />

@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 interface Props {
-  start: Date;
+  start: string | number;
+  end?: string | number;
 }
 
 const initialTimer: TimerModel = {
@@ -13,9 +14,14 @@ const initialTimer: TimerModel = {
   seconds: "00",
 };
 
-const countUp = (start: Date): TimerModel => {
-  const now = new Date();
-  const distance = now.getTime() - start.getTime();
+const countDistance = (
+  start: Props["start"],
+  end?: Props["end"]
+): TimerModel => {
+  const startTime = new Date(start);
+  const endTime = end !== undefined ? new Date(end) : new Date();
+
+  const distance = endTime.getTime() - startTime.getTime();
 
   const time: TimerModel = {
     hours: leftPad(Math.floor(distance / (1000 * 60 * 60))),
@@ -26,19 +32,24 @@ const countUp = (start: Date): TimerModel => {
   return time;
 };
 
-export const Timer = ({ start }: Props) => {
+export const Timer = ({ start, end }: Props) => {
   const [timer, setTimer] = useState<TimerModel>(initialTimer);
 
-  const countTimeUp = (start: Date) => {
+  const countUp = (start: Props["start"]) => {
     setInterval(function () {
-      const time = countUp(start);
+      const time = countDistance(start);
       setTimer(time);
     }, 1000);
   };
 
   useEffect(() => {
-    countTimeUp(start);
-  }, []);
+    if (end !== undefined) {
+      setTimer(countDistance(start, end));
+      return;
+    }
+
+    countUp(start);
+  }, [end]);
 
   return (
     <View className="flex flex-row">
