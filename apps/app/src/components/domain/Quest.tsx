@@ -42,10 +42,7 @@ export const Quest = ({ quest }: Props) => {
     const indexToModify = quests.findIndex((quest) => quest.id == id);
     const modifiedQuest = {
       ...quests[indexToModify],
-      end:
-        quests[indexToModify].end === undefined
-          ? new Date().toString()
-          : undefined,
+      end: new Date().toString(),
     };
 
     const isStored = await modifyValueIntoStoredArray(
