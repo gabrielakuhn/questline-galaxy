@@ -10,7 +10,7 @@ type Props = NativeStackScreenProps<RootScreensParamList, Screen.Crew>;
 export const Crew = ({ navigation, route }: Props) => {
   return (
     <ScreenWrap navigation={navigation} route={route}>
-      <Text>This is {route.params.name}'s Crew</Text>
+      <Text>This is {route.params.name}&apos;s Crew</Text>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam justo
       </Text>
