@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tripsReducer from "./domain/trips-slice";
-import questsReducer from "./domain/quest-slice";
+import tripsReducer from "@/store/domain/trips-slice";
+import questsReducer from "@/store/domain/quest-slice";
 
 export const store = configureStore({
   reducer: {
