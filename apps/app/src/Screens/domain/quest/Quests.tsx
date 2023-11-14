@@ -12,20 +12,13 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/store/infrastructure";
-import {
-  fetchQuests,
-  getFinishedQuests,
-  getQuestStore,
-  getUnfinishedQuests,
-} from "@/store/domain";
+import { fetchQuests, getQuestStore } from "@/store/domain";
 
 type Props = NativeStackScreenProps<RootScreensParamList, Screen.Quests>;
 
 export const Quests = ({ navigation, route }: Props) => {
   const dispatch = useAppDispatch();
-  const { status: questStatus } = useAppSelector(getQuestStore);
-  const finishedQuests = useAppSelector(getFinishedQuests);
-  const unfinishedQuests = useAppSelector(getUnfinishedQuests);
+  const { quests, status: questStatus } = useAppSelector(getQuestStore);
 
   useEffect(() => {
     if (questStatus === StoreStatus.IDLE) {
@@ -36,32 +29,19 @@ export const Quests = ({ navigation, route }: Props) => {
   return (
     <ScreenWrap navigation={navigation} route={route}>
       <View className="space-y-8">
-        <View>
-          <Text>Unfinished Quests!</Text>
-          {unfinishedQuests.map((quest) => (
-            <View
-              key={quest.id}
-              className="border border-slate-400 border-dashed rounded-2xl"
-            >
-              <Quest quest={quest} />
-            </View>
-          ))}
-        </View>
-        <View className="border-t-4 border-indigo-500 pt-8">
-          <Text>Finished Quests!</Text>
-          {finishedQuests.map((quest) => (
-            <View
-              key={quest.id}
-              className="border border-slate-400 border-dashed rounded-2xl"
-            >
-              <Quest quest={quest} />
-            </View>
-          ))}
-        </View>
+        <Text>Questline app met Typescript en Nativewind!</Text>
+        {quests.map((quest) => (
+          <View
+            key={quest.id}
+            className="border border-slate-400 border-dashed rounded-2xl"
+          >
+            <Quest quest={quest} />
+          </View>
+        ))}
         <View>
           <Button
             onPress={() => navigation.navigate(Screen.CreateQuest)}
-            title="Add Quest"
+            title="Add Trip"
           />
         </View>
       </View>
