@@ -36,14 +36,6 @@ const questsSlice = createSlice({
       const id = action.payload;
       state.quests = state.quests.filter((quest) => quest.id !== id);
     },
-    modifyQuest(state, action) {
-      const id = action.payload.id;
-      const questIndex = state.quests.findIndex((quest) => quest.id == id);
-      state.quests[questIndex] = {
-        ...state.quests[questIndex],
-        ...action.payload,
-      };
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchQuests.fulfilled, (state, action) => {
@@ -62,11 +54,5 @@ const questsSlice = createSlice({
 export const getQuestStore = (state: RootState): FetchQuestRequest =>
   state.questsStore;
 
-export const getFinishedQuests = (state: RootState): Quest[] =>
-  state.questsStore.quests.filter((quest) => quest.end !== undefined);
-
-export const getUnfinishedQuests = (state: RootState): Quest[] =>
-  state.questsStore.quests.filter((quest) => quest.end === undefined);
-
-export const { addQuest, removeQuest, modifyQuest } = questsSlice.actions;
+export const { addQuest, removeQuest } = questsSlice.actions;
 export default questsSlice.reducer;
