@@ -11,8 +11,8 @@ interface Props extends NativeStackScreenProps<RootScreensParamList> {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    justifyContent: "center",
     flexGrow: 1,
+    justifyContent: "center",
   },
 });
 
